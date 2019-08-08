@@ -6,7 +6,7 @@ pipeline {
 	environment {
      DOCKERHUB_USERNAME = "ravi338"
      APP_NAME = "msa-banking-aws"
-     ${SERVICE_NAME} = "account"
+     SERVICE_NAME = "account"
      REPOSITORY_TAG="${DOCKERHUB_USERNAME}/${APP_NAME}-${SERVICE_NAME}:${BUILD_ID}"
 	 }
 	stages {
