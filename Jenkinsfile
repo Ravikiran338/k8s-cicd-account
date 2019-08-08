@@ -6,8 +6,8 @@ pipeline {
 	environment {
      DOCKERHUB_USERNAME = "ravi338"
      APP_NAME = "msa-banking-aws"
-     
-     REPOSITORY_TAG="${DOCKERHUB_USERNAME}/${APP_NAME}-account:${BUILD_ID}"
+     ${SERVICE_NAME} = "account"
+     REPOSITORY_TAG="${DOCKERHUB_USERNAME}/${APP_NAME}-${SERVICE_NAME}:${BUILD_ID}"
 	 }
 	stages {
 	         stage ('scm checkout') {
@@ -27,16 +27,15 @@ pipeline {
 			      steps {
 				     sh label: '', script: '''
                                               cd ${WORKSPACE}					 
-					      #docker rmi -f user
 					      docker build -t ${REPOSITORY_TAG} .
 					      docker login
-                                              #docker tag user ${REPOSITORY_TAG}
                                               docker push ${REPOSITORY_TAG}
 					      export KUBECONFIG=~/.kube/kube-config-eks	
 					      export PATH=$HOME/bin:$PATH
 					      echo `kubectl get svc`
 					      echo `kubectl get nodes`
-											  envsubst < ${WORKSPACE}/account.yaml | kubectl apply -f -
+					      
+					      envsubst < ${WORKSPACE}/${SERVICE_NAME}.yaml | kubectl apply -f -
 										   '''										   
 						}
 					}
