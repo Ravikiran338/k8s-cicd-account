@@ -1,0 +1,17 @@
+server:
+  port: 3333
+  
+spring:
+  application:
+    name: accountservice
+
+eureka:
+  client:
+    # healthcheck:
+      # enabled: true
+    serviceUrl:
+      defaultZone: http://microservices-eureka-service:8761/eureka/
+  instance:
+      hostname: accountservice
+  
+
