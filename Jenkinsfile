@@ -1,3 +1,4 @@
+@Library('pipeline-shared-library') _
 pipeline {
 	agent any
 	tools { 
