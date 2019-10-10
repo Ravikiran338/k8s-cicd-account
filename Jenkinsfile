@@ -50,7 +50,7 @@ pipeline {
 						}
 					}
 					
-		     stage ('testing scm checkout') {
+		    /* stage ('testing scm checkout') {
                       steps {
                 script{
                 env.STAGE = "testing scm checkout"
@@ -86,7 +86,7 @@ pipeline {
 				 }
 				        echo "${currentBuild.result}"
 				 }
-		   }
+		   } */
 		}
 	}
 	
