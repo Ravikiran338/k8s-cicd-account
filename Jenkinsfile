@@ -48,47 +48,8 @@ pipeline {
 					      envsubst < ${WORKSPACE}/${SERVICE_NAME}.yaml | kubectl apply -f -
 										   '''										   
 						}
-					}
-					
-		    /* stage ('testing scm checkout') {
-                      steps {
-                script{
-                env.STAGE = "testing scm checkout"
-                }
-                       cleanWs()
-                       checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub-Ravi', url: 'https://github.com/Ravikiran338/k8s-account-testscripts.git']]])
-                             }
-                       } */
-
-		   /*stage ('test automation execution') {
-                   steps {
-			   script{
-			   env.STAGE = "test automation execution"
-						  try{
-                           sh label: '', script: '''
-						                            cd ${WORKSPACE}
-						                            chmod +x drivers/*
-                                                    mvn clean install
-                    
-                                                 '''
-												 currentBuild.result = 'SUCCESS'
-												                      echo "Service Deployed Successfully"
-							}
-				                                 catch(Exception e){
-					                             currentBuild.result = 'FAILURE'
-
-					                             sh label: '', script: '''
-					                                                   echo "Rolling back Deployment "
-		                                                               export KUBECONFIG=~/.kube/kube-config-eks
-		                                                               export PATH=$HOME/bin:$PATH
-		                                                               kubectl rollout undo deployment.apps/accountservice
-                                                                       '''
-				 }
-				        echo "${currentBuild.result}"
-				 }
-		   } */
+					}		    
 		}
-	}
 	
 post
    {
