@@ -33,8 +33,8 @@ pipeline {
 			 stage ('deploy') {
 			      steps {
 				  script{
-                env.STAGE = "deploy"
-                }
+                                     env.STAGE = "deploy"
+                                         }
 				     sh label: '', script: '''
                                               cd ${WORKSPACE}					 
 					      docker build -t ${REPOSITORY_TAG} .
@@ -58,9 +58,9 @@ pipeline {
                        cleanWs()
                        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub-Ravi', url: 'https://github.com/Ravikiran338/k8s-account-testscripts.git']]])
                              }
-                       }
+                       } */
 
-		   stage ('test automation execution') {
+		   /*stage ('test automation execution') {
                    steps {
 			   script{
 			   env.STAGE = "test automation execution"
